@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Income Prediction</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html{
+            overflow: hidden;
+        }
+
+        body{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #login-form-container{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div id = "login-form-container">
+            <form action="classify" method="GET">
+                <div class="card" style="width: 400px">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="is-size-4 has-text-centered">Income Prediction(Above 50K or 50K and below)</div>
+                        </div>
+                        <div class="content">
+
+                        <div class="field">
+                            <p class="control">
+                            Age: <input class="input" type="number" value='0' step='0' name="age" id="age">
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <p class="control">
+                            Working hours per week: <input class="input" type="number" value='0' step='0' name="hours_per_week" id="hours_per_week">
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <p class="control">
+                            Working class:
+                                <select id="work_class" name="work_class">
+                                    <option value="0">State-gov</option>
+                                    <option value="1">Self-emp-not-inc</option>
+                                    <option value="2">Private</option>
+                                    <option value="3">Federal-gov</option>
+                                    <option value="4">Local-gov</option>
+                                    <option value="5">Self-emp-inc</option>
+                                    <option value="6">Without-pay</option>
+                                </select>
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <p class="control">
+                            Highest Education:
+                                <select id="edu_class" name="edu_class">
+                                    <option value="0">Bachelors</option>
+                                    <option value="1">HS-grad</option>
+                                    <option value="2">11th</option>
+                                    <option value="3">Masters</option>
+                                    <option value="4">9th</option>
+                                    <option value="5">Some-college</option>
+                                    <option value="6">Assoc-acdm</option>
+                                    <option value="7">7th-8th</option>
+                                    <option value="8">Doctorate</option>
+                                    <option value="9">Assoc-voc</option>
+                                    <option value="10">Prof-school</option>
+                                    <option value="11">5th-6th</option>
+                                    <option value="12">10th</option>
+                                    <option value="13">Preschool</option>
+                                    <option value="14">12th</option>
+                                    <option value="15">1st-4th</option>
+                                </select>
+                            </p>
+                        </div>
+
+                            <div class="field">
+                            <p class="control">
+                            Marital Status:
+                                <select id="marital_status" name="marital_status">
+                                    <option value="0">Never-married</option>
+                                    <option value="1">Married-civ-spouse</option>
+                                    <option value="2">Divorced</option>
+                                    <option value="3">Married-spouse-absent</option>
+                                    <option value="4">Separated</option>
+                                    <option value="5">Married-AF-spouse</option>
+                                    <option value="6">Widowed</option>
+                                </select>
+                            </p>
+                        </div>
+
+                            <div class="field">
+                            <p class="control">
+                            Previous Occupation:
+                                <select id="prev_occu" name="prev_occu">
+                                    <option value="0">Adm-clerical</option>
+                                    <option value="1">Exec-managerial</option>
+                                    <option value="2">Handlers-cleaners</option>
+                                    <option value="3">Prof-specialty</option>
+                                    <option value="4">Other-service</option>
+                                    <option value="5">Sales</option>
+                                    <option value="6">Transport-moving</option>
+                                    <option value="7">Farming-fishing</option>
+                                    <option value="8">Machine-op-inspct</option>
+                                    <option value="9">Tech-support</option>
+                                    <option value="10">Craft-repair</option>
+                                    <option value="11">Protective-serv</option>
+                                    <option value="12">Armed-Forces</option>
+                                    <option value="13">Priv-house-serv</option>
+                                </select>
+                            </p>
+                        </div>
+
+                            <div class="field">
+                            <p class="control">
+                            Relationship Status:
+                                <select id="relation_status" name="relation_status">
+                                    <option value="0">Not-in-family</option>
+                                    <option value="1">Husband</option>
+                                    <option value="2">Wife</option>
+                                    <option value="3">Own-child</option>
+                                    <option value="4">Unmarried</option>
+                                    <option value="5">Other-relative</option>
+                                </select>
+                            </p>
+                        </div>
+
+                            <div class="field">
+                            <p class="control">
+                            Race:
+                                <select id="race" name="race">
+                                    <option value="0">White</option>
+                                    <option value="1">Black</option>
+                                    <option value="2">Asian-Pac-Islander</option>
+                                    <option value="3">Amer-Indian-Eskimo</option>
+                                    <option value="4">Other</option>
+                                </select>
+                            </p>
+                        </div>
+
+                            <div class="field">
+                            <p class="control">
+                            Sex:
+                                <select id="sex" name="sex">
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                            </select>
+                            </p>
+                        </div>
+
+                            <div class="field">
+                            <p class="control">
+                            Native Country:
+                                <select id="native_country" name="native_country">
+                                    <option value="0">United-States</option>
+                                    <option value="1">Cuba</option>
+                                    <option value="2">Jamaica</option>
+                                    <option value="3">India</option>
+                                    <option value="4">Mexico</option>
+                                    <option value="5">South</option>
+                                    <option value="6">Puerto-Rico</option>
+                                    <option value="7">Honduras</option>
+                                    <option value="8">England</option>
+                                    <option value="9">Canada</option>
+                                    <option value="10">Germany</option>
+                                    <option value="11">Iran</option>
+                                    <option value="12">Philippines</option>
+                                    <option value="13">Poland</option>
+                                    <option value="14">Columbia</option>
+                                    <option value="15">Cambodia</option>
+                                    <option value="16">Thailand</option>
+                                    <option value="17">Ecuador</option>
+                                    <option value="18">Laos</option>
+                                    <option value="19">Taiwan</option>
+                                    <option value="20">Haiti</option>
+                                    <option value="21">Portugal</option>
+                                    <option value="22">Dominican-Republic</option>
+                                    <option value="23">El-Salvador</option>
+                                    <option value="24">France</option>
+                                    <option value="25">Guatemala</option>
+                                    <option value="26">China</option>
+                                    <option value="27">South</option>
+                                    <option value="28">Japan</option>
+                                    <option value="29">Yugoslavia</option>
+                                    <option value="30">Peru</option>
+                                    <option value="31">Outlying-US(Guam-USVI-etc)</option>
+                                    <option value="32">Scotland</option>
+                                    <option value="33">Trinadad&Tobago</option>
+                                    <option value="34">Greece</option>
+                                    <option value="35">Nicaragua</option>
+                                    <option value="36">Vietnam</option>
+                                    <option value="37">Hong</option>
+                                    <option value="38">Ireland</option>
+                                    <option value="39">Hungary</option>
+                                    <option value="40">Holand-Netherlands</option>
+                                </select>
+                            </p>
+                            </div>
+                        </div>
+
+                <div class="field">
+                    <button class="button is-fullwidth is-rounded is-success">Submit</button>
+                </div>
+                </div>
+            </div>
+            </form>
+        </div>
+</body>
+</html>
+
+
